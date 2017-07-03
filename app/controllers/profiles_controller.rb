@@ -5,22 +5,25 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @post = Post.new
+    @posts = User.find(params[:id]).posts
   end
-end
 
-def update
-  @user = User.find(params[:id])
-  if @user.update(profile_params)
-    flash[:success] = 'Your profile has been updated'
-    redirect_to profile_path(@user.id)
-  else
-    @user.errors.full_messages
-    flash[:error] = @user.errors.full_messages
-    render :edit
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(profile_params)
+      flash[:success] = 'Your profile has been updated'
+      redirect_to profile_path(@user.id)
+    else
+      @user.errors.full_messages
+      flash[:error] = @user.errors.full_messages
+      render :edit
+    end
   end
-end
-private
+  private
 
-def profile_params
-  params.require(:user).permit(:name)
+  def profile_params
+    params.require(:user).permit(:name)
+  end
 end
