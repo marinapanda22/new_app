@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @notice = Notice.new
   end
 
   # GET /posts/new
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to :back, notice: 'Post was successfully created.' }
+        format.html { redirect_to :back, notice: 'Картинка загружена' }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
