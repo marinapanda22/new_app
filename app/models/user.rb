@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
-  has_many :notices
+  has_many :posts, dependent: :destroy
+  has_many :notices, dependent: :destroy
 
   def role?(r)
     role.include? r.to_s

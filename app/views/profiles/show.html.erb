@@ -2,10 +2,12 @@
 <% if can? :update, @user %>
   <%=  link_to "Изменить профиль", edit_profile_path(@user[:id]), class: "btn btn-success" %>
 <% end %>
-
-<%= render 'posts/form', post: @post %>
+<br>
 
 <% @user.posts.each do |post|%>
-    <div class="img"><%= image_tag post.image %></div>
     <%= post.title %>
+    <div class="img"><%= image_tag post.image.large %></div>
 <% end %>
+<br>
+
+<%= render 'posts/form', post: @post %>
