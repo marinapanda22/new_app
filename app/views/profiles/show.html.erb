@@ -1,0 +1,4 @@
+<h1><%= @user.name %></h1>
+<% if can? :update, @user %>
+  <%=  link_to "Изменить профиль", edit_profile_path(@user[:id]), class: "btn btn-success" %>
+<% end %>

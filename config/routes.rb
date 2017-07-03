@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :profiles, only: [:edit, :show]
+
   ActiveAdmin.routes(self)
   devise_for :users
   resources :notices
