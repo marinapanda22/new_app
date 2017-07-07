@@ -6,8 +6,15 @@
 
 <% @user.posts.each do |post|%>
     <%= post.title %>
-    <div class="img"><%= link_to image_tag(post.image.large), post_path(post) %></div>
+    <div class="img"><%= link_to image_tag(post.image.large), post_path(post) %>
+      <% if can? :update, @user %>
+          <%= link_to "Удалить фото", post, method: :delete %>
+      <% end %>
+    </div>
 <% end %>
 <br>
 
-<%= render 'posts/form', post: @post %>
+<% if can? :update, @user %>
+  <h4>Добавить фото:</h4>
+  <%= render 'posts/form', post: @post %>
+<% end %>
