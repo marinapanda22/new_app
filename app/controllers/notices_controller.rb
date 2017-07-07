@@ -1,6 +1,7 @@
 class NoticesController < ApplicationController
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
 
+
   # GET /notices
   # GET /notices.json
   def index
@@ -68,6 +69,6 @@ class NoticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notice_params
-      params.require(:notice).permit(:body)
+      params.require(:notice).permit(:body, :post_id, :mark)
     end
 end

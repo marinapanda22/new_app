@@ -6,7 +6,7 @@
 
 <% @user.posts.each do |post|%>
     <%= post.title %>
-    <div class="img"><%= image_tag post.image.large %></div>
+    <div class="img"><%= link_to image_tag(post.image.large), post_path(post) %></div>
 <% end %>
 <br>
 

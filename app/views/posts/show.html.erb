@@ -3,8 +3,21 @@
 <h2><%= @post.title %></h2>
 <%= image_tag @post.image %>
 
-<%= render 'notices/form', notice: @notice %>
 
-<% @post.notices.each do |notice|%>
-  <%= notice.body %>
-<% end %>
+
+
+<div id ="comment-section">
+  <ol id="comments">
+    <% @post.notices.each do |notice|%>
+        <%= notice.body %>
+        <%= notice.mark %>
+        <br>
+    <% end %>
+  </ol>
+  <p>
+    <span>Средняя оценка: <%= Notice.where(:post => @post).average("mark") %></span>
+  </p>
+
+  <h4>Добавить комментарий:</h4>
+  <%= render 'notices/form', notice: @notice %>
+</div>
